@@ -1,0 +1,29 @@
+<%= @config.application %> has been deploy to <%= @config.stage %> @ <%= Time.now %>.
+
+## Paths
+
+Previous: <%= @config.previous_release %> @ <%= @config.previous_revision %>
+Current:  <%= @config.current_release %> @ <%= @config.current_revision %>
+
+## Commits since last deploy (most recent at bottom)
+
+<%= raw @scm.shortlog -%>
+
+<% @scm.subdirs_shortlog.each_pair do |dir, log| -%>
+### Directory <%= dir %>
+
+<%= raw log -%>
+<%- end -%>
+
+## Files changed since last deploy
+
+<%= raw @scm.diff_stat -%>
+
+<% @scm.subdirs_diff_stat.each_pair do |dir, stat| -%>
+### Directory <%= dir %>
+
+<%= raw stat -%>
+<%- end -%>
+
+---
+This is an automatically generated deployment message from MailCar.

@@ -1,6 +1,8 @@
-# Ignore hidden files:
+# Ignore hidden files by default:
 .*
 !.gitignore
+
+Gemfile.lock
 
 tmp
 doc/
