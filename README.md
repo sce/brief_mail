@@ -80,6 +80,9 @@ The MailCar config is a hash with the following options:
 When using sendmail, `:from` can be omitted to let sendmail handle it.
 `:subject` is not required.
 
+Please see http://api.rubyonrails.org/classes/ActionMailer/Base.html for
+ActionMailer config options.
+
 When using git, a `git_format` option can be used to control the output of the shortlogs:
 
       # This is the default:
@@ -96,6 +99,24 @@ the future.)
 
 When configured properly a mail will be sent out automatically after a
 successful deployment.
+
+For checking how the deploy mail will look (without configuring the mailer)
+then the ActionMailer file delivery option can be used:
+
+    {
+      mailer: {
+        delivery_method: :file,
+        file_settings: {
+          location: File.dirname(__FILE__),
+        },
+
+      recipients: %(mail_car.output),
+    }
+
+This will write the mail to `mail_car.output` in the same directory as the
+config file instead of sending it as a mail.
+
+### Capistrano
 
 To manually launch a mail (for e.g. testing):
 
