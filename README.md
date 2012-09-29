@@ -83,7 +83,9 @@ When using git, a `git_format` option can be used to control the output of the s
 ### Source Control Management
 
 The scm type should be automatically picked up via the deployment tool config,
-so no extra configuration necessary.
+so no extra configuration necessary. (As of writing this is quite moot since it
+only supports git anyway, but it should be easy to support other scm types in
+the future.)
 
 ## Usage
 
