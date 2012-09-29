@@ -145,7 +145,7 @@ which is written by Christopher Sexton.
 
 The AbstractionAdapters are inspired by ActiveRecord.
 
-BreifMail is written by S. Christoffer Eliesen (http://github.com/sce).
+BriefMail is written by S. Christoffer Eliesen (http://github.com/sce).
 
 ## License
 
