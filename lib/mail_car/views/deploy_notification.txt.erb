@@ -7,9 +7,9 @@ Current:  <%= @config.current_release %> @ <%= @config.current_revision %>
 
 ## Commits since last deploy (most recent at bottom)
 
-<%= raw @scm.shortlog -%>
+<%= raw @scm.log -%>
 
-<% @scm.subdirs_shortlog.each_pair do |dir, log| -%>
+<% @scm.subdirs_log.each_pair do |dir, log| -%>
 ### Directory <%= dir %>
 
 <%= raw log -%>

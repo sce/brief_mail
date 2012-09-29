@@ -83,7 +83,8 @@ When using sendmail, `:from` can be omitted to let sendmail handle it.
 Please see http://api.rubyonrails.org/classes/ActionMailer/Base.html for
 ActionMailer config options.
 
-When using git, a `git_format` option can be used to control the output of the shortlogs:
+When using git, a `git_format` option can be used to control the output of the
+logs:
 
       # This is the default:
       git_format: %(* %ad %s%+b)

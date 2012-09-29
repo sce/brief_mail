@@ -7,8 +7,8 @@ module MailCar
         nil
       end
 
-      # The shortlog for the current repository, as string.
-      def shortlog
+      # The log for the current repository, as string.
+      def log
         nil
       end
 
@@ -19,10 +19,10 @@ module MailCar
         {}
       end
 
-      # The shortlog for any subdirectories not directly contained whithin
-      # shortlog for the current repository (e.g. git submodules) in the format
-      # "{ "sub-directory-name" => "shortlog" }".
-      def subdirs_shortlog
+      # The log for any subdirectories not directly contained whithin
+      # log for the current repository (e.g. git submodules) in the format
+      # "{ "sub-directory-name" => "log" }".
+      def subdirs_log
         {}
       end
 

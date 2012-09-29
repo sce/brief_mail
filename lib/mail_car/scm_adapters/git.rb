@@ -2,7 +2,7 @@ module MailCar
   module SCMAdapters
     class Git < AbstractAdapter
 
-      # Compact git format to use for shortlog commands:
+      # Compact git format to use for log commands:
       GIT_FORMAT = %(* %ad %s%+b).freeze
 
       private
@@ -56,14 +56,14 @@ module MailCar
         %x(#{cmd})
       end
 
-      def shortlog
+      def log
         cmd = %(git log %s.. --pretty='%s' --date=short --reverse --color=never) %
           [@config.previous_revision, format]
 
         %x(#{cmd})
       end
 
-      def subdirs_shortlog
+      def subdirs_log
         submodule_command do |prev_sha, cur_sha|
           cmd = %(git log %s..%s --pretty='%s' --date=short --reverse --color=never) %
             [prev_sha, cur_sha, format]
