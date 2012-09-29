@@ -2,6 +2,10 @@ module BriefMail
   module SCMAdapters
     class AbstractAdapter
 
+      def initialize(config)
+        @config = config
+      end
+
       # The diff stat for the current repository, as string.
       def diff_stat
         nil
