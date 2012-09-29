@@ -108,9 +108,11 @@ Add this line to your application's Gemfile. Anywhere will be fine, but it is
 best to put in a non-standard group to prevent it from being loaded into memory
 automatically by Rails:
 
-    group :deployment do
-      gem 'brief_mail'
-    end
+```ruby
+group :deployment do
+  gem 'brief_mail'
+end
+```
 
 And then execute:
 
@@ -124,11 +126,13 @@ Or install it yourself as:
 
 In config/deploy.rb:
 
-    require 'brief_mail/capistrano'
+```ruby
+require 'brief_mail/capistrano'
 
-    set :brief_mail_config, {
-      # BriefMail config options.
-    }
+set :brief_mail_config, {
+  # BriefMail config options.
+}
+```
 
 If using multistage then different config options can be used for different
 stages (obviously).
@@ -137,28 +141,30 @@ stages (obviously).
 
 The BriefMail config is a hash with the following options:
 
-    {
-      mailer: {
-        # Normal ActionMailer class config, e.g:
-        delivery_method: :smtp,
-        smtp_settings: {
-          address: "smtp.gmail.com",
-          port: 587,
-          user_name: "username@gmail.com",
-          password: "password",
-          authentication: :plain,
-        },
-      },
+```ruby
+{
+  mailer: {
+    # Normal ActionMailer class config, e.g:
+    delivery_method: :smtp,
+    smtp_settings: {
+      address: "smtp.gmail.com",
+      port: 587,
+      user_name: "username@gmail.com",
+      password: "password",
+      authentication: :plain,
+    },
+  },
 
-      # Or just use sendmail for sending:
-      # mailer: {
-      #   delivery_method: :sendmail,
-      # },
+  # Or just use sendmail for sending:
+  # mailer: {
+  #   delivery_method: :sendmail,
+  # },
 
-      from: %(your.email@example.com),
-      recipients: %w(your.email@example.com another.email@example.com),
-      subject: %([DEPLOY] MyApp has been successfully deployed),
-    }
+  from: %(your.email@example.com),
+  recipients: %w(your.email@example.com another.email@example.com),
+  subject: %([DEPLOY] MyApp has been successfully deployed),
+}
+```
 
 When using sendmail, `:from` can be omitted to let sendmail handle it.
 `:subject` is not required.
@@ -169,12 +175,16 @@ ActionMailer config options.
 When using git, a `git_format` option can be used to control the output of the
 logs:
 
-    # This is the default:
-    git_format: %(* %ad %s%+b)
+```ruby
+# This is the default:
+git_format: %(* %ad %s%+b)
+```
 
 A different/custom template can be used by specifying in the config:
 
-    template: 'app/views/some_template.txt' # trailing .erb is not needed.
+```ruby
+template: 'app/views/some_template.txt' # trailing .erb is not needed.
+```
 
 Some variables with useful data and methods are available in the template,
 please read the source for the API:
@@ -197,15 +207,17 @@ successful deployment.
 For checking how the deploy mail will look (without configuring the mailer)
 then the ActionMailer file delivery option can be used:
 
-    {
-      mailer: {
-        delivery_method: :file,
-        file_settings: {
-          location: File.dirname(__FILE__),
-        },
+```ruby
+{
+  mailer: {
+    delivery_method: :file,
+    file_settings: {
+      location: File.dirname(__FILE__),
+    },
 
-      recipients: %(brief_mail.output),
-    }
+  recipients: %(brief_mail.output),
+}
+```
 
 This will write the mail to `brief_mail.output` in the same directory as the
 config file instead of sending it as a mail.
