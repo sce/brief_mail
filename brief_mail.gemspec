@@ -18,7 +18,7 @@ Gem::Specification.new do |gem|
   gem.require_paths = ["lib"]
 
   gem.add_dependency "actionmailer", "~> 3.0"
-  gem.add_dependency "minitest", "~> 4.0"
 
+  gem.add_development_dependency "minitest", "~> 4.0"
   gem.add_development_dependency "rake", "~> 0.9"
 end
