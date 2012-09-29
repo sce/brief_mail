@@ -135,9 +135,7 @@ aborted and rolled back (by nature of capistrano).
 4. Push to the branch (`git push origin my-new-feature`)
 5. Create new Pull Request
 
-## Copyright
-
-Copyright Sten Christoffer Eliesen 2012.
+## Credits
 
 This gem was inspired by the lightweight mailer posted at
 https://gist.github.com/955917, written by rtekie and John Lynch
@@ -146,6 +144,8 @@ http://www.codeography.com/2010/03/24/simple-capistrano-email-notifier-for-rails
 which is written by Christopher Sexton.
 
 The AbstractionAdapters are inspired by ActiveRecord.
+
+BreifMail is written by S. Christoffer Eliesen (http://github.com/sce).
 
 ## License
 

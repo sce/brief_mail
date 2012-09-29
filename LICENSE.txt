@@ -1,4 +1,4 @@
-Copyright (c) 2012 S. Christoffer Eliesen
+Copyright (c) 2012 Sten Christoffer Eliesen
 
 MIT License
 
