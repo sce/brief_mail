@@ -9,21 +9,19 @@ Current:  <%= @config.current_release %> @ <%= @config.current_revision %>
 
 <%= raw @scm.log -%>
 
-<% @scm.subdirs_log.each_pair do |dir, log| -%>
+<%- @scm.subdirs_log.each_pair do |dir, log| -%>
 ### Directory <%= dir %>
 
-<%= raw log -%>
+<%= raw log %>
 <%- end -%>
-
 ## Files changed since last deploy
 
 <%= raw @scm.diff_stat -%>
 
-<% @scm.subdirs_diff_stat.each_pair do |dir, stat| -%>
+<%- @scm.subdirs_diff_stat.each_pair do |dir, stat| -%>
 ### Directory <%= dir %>
 
-<%= raw stat -%>
+<%= raw stat %>
 <%- end -%>
-
 ---
 This is an automatically generated deployment message from BriefMail.
