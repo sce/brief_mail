@@ -26,7 +26,7 @@ module BriefMail
       # Add lib directory for this gem to view path:
       view_paths << File.expand_path("../../", __FILE__)
 
-      recipients = @config.recipients
+      recipients = @config.recipients or raise %(One or more recipients are required.)
       subj = @config.subject || %([DEPLOY] %s deployed to %s) % [@config.application, @config.stage]
 
       mail( to: recipients, subject: subj ) do |format|
