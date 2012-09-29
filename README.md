@@ -56,16 +56,21 @@ The MailCar config is a hash with the following options:
 
     {
       mailer: {
-        # Normal action_mailer config, e.g:
-        address: "smtp.gmail.com",
-        port: 587,
-        user_name: "username@gmail.com",
-        password: "password",
-        authentication: :plain,
+        # Normal ActionMailer class config, e.g:
+        delivery_method: :smtp,
+        smtp_settings: {
+          address: "smtp.gmail.com",
+          port: 587,
+          user_name: "username@gmail.com",
+          password: "password",
+          authentication: :plain,
+        },
       },
 
       # Or just use sendmail for sending:
-      #mailer: :sendmail,
+      # mailer: {
+      #   delivery_method: :sendmail,
+      # },
 
       from: %(your.email@example.com),
       recipients: %w(your.email@example.com another.email@example.com),

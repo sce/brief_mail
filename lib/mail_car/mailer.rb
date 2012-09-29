@@ -6,15 +6,15 @@ module MailCar
   class Mailer < ActionMailer::Base
 
     def self.load_config(config)
-      if config.is_a? Symbol
-        Mailer.delivery_method = config
+      raise ArgumentError, %(:mailer config is required, and must behave like a Hash) unless config and config.respond_to?(:each_pair)
 
-      elsif config.is_a? Hash
-        Mailer.delivery_method = :smtp
-        Mailer.smtp_settings = config
-
-      else
-        raise ArgumentError, %(mail_car_config.mailer must either be ActionMailer delivery method (as symbol) or SMTP settings as hash)
+      config.each_pair do |k, v|
+        assign = "#{k}="
+        if Mailer.respond_to?(assign)
+          Mailer.send(assign, v)
+        else
+          raise ArgumentError, %("%s" is an invalid ActionMailer config option) % k
+        end
       end
     end
 
