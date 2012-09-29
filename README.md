@@ -9,6 +9,88 @@ Currently only git source control management and capistrano deployment tool is
 supported, but an abstraction layer (inspired by ActiveRecord) exists to
 hopefully allow for easy integration with other tools.
 
+## Example output
+
+Just to give an idea on what the mails look like:
+
+    Test Application has been deployed to test @ 2012-09-29 18:57:30 +0200.
+
+    ## Paths
+
+    Previous: /tmp/prev @ dd1afc4
+    Current:  /tmp/current @ d461201
+
+    ## Commits since last deploy (most recent at bottom)
+
+    * 2012-09-28 .gitignore: Clean up.
+    * 2012-09-28 bundle gem + initial code.
+    * 2012-09-29 lib/mail_car/capistrano: Move integration here. Clean up README.
+    * 2012-09-29 config/adapters/abstract_adapter: Return user config has via from_user.
+    Instead of duplicating the hash parsing code for each config adapter we
+    might as well do it in the abstract adapter.
+
+    * 2012-09-29 scm/adapters/git: Support git_format option.
+    * 2012-09-29 mailcar.gemspec: Require actionmailer.
+    * 2012-09-29 README: Clarification.
+    * 2012-09-29 scm_adapters: Bugfix for git_format.
+    * 2012-09-29 mailer: Proxy all config options directly to ActionMailer.
+    Might as well.
+
+    * 2012-09-29 README: File delivery method.
+    * 2012-09-29 Rename shortlog to log, since it's not really short (by default).
+    * 2012-09-29 Rename to BriefMail.
+    Turns out MailCar was taken.
+
+    * 2012-09-29 Rakefile: Setup test environment with MiniTest.
+    * 2012-09-29 config_adapters/abstract_adapter_test: Add.
+    * 2012-09-29 config/adapters/capistrano_test: Add.
+    * 2012-09-29 scm_adapters/abstract_adapter_test: Add.
+    * 2012-09-29 scm_adapters/abstract_adapter: Require config upon initialization.
+    * 2012-09-29 scm_adapters/git_test: Add.
+    * 2012-09-29 mailer: Require one or more recipients.
+    * 2012-09-29 mailer_test: Add.
+    * 2012-09-29 README: Minor adjustments.
+    * 2012-09-29 README: Fix typo.
+    * 2012-09-29 views/deploy_notification: Fix typo.
+    * 2012-09-29 brief_mail.gemspec: Make minitest development dependency.
+    * 2012-09-29 mailer: Add template option.
+    * 2012-09-29 .gitignore: Add pkg directory.
+    * 2012-09-29 HISTORY: Updated.
+    * 2012-09-29 BriefMail v0.0.2
+    * 2012-09-29 mailer_test: Update.
+    * 2012-09-29 BriefMail v0.0.3
+
+    ## Files changed since last deploy
+
+     .gitignore                                         |   23 +--
+     Gemfile                                            |    4 +
+     HISTORY.md                                         |   14 ++
+     LICENSE.txt                                        |   22 +++
+     README.md                                          |  164 +++++++++++++++++++-
+     Rakefile                                           |   11 ++
+     brief_mail.gemspec                                 |   24 +++
+     lib/brief_mail.rb                                  |    5 +
+     lib/brief_mail/capistrano.rb                       |   14 ++
+     lib/brief_mail/config_adapters.rb                  |   16 ++
+     lib/brief_mail/config_adapters/abstract_adapter.rb |   44 ++++++
+     lib/brief_mail/config_adapters/capistrano.rb       |   43 +++++
+     lib/brief_mail/mailer.rb                           |   42 +++++
+     lib/brief_mail/scm_adapters.rb                     |   17 ++
+     lib/brief_mail/scm_adapters/abstract_adapter.rb    |   35 +++++
+     lib/brief_mail/scm_adapters/git.rb                 |   86 ++++++++++
+     lib/brief_mail/version.rb                          |    3 +
+     lib/brief_mail/views/deploy_notification.txt.erb   |   29 ++++
+     .../config_adapters/abstract_adapter_test.rb       |   39 +++++
+     test/brief_mail/config_adapters/capistrano_test.rb |   47 ++++++
+     test/brief_mail/mailer_test.rb                     |   48 ++++++
+     test/scm_adapters/abstract_adapter_test.rb         |   19 +++
+     test/scm_adapters/git_test.rb                      |   75 +++++++++
+     test/test_helper.rb                                |    2 +
+     24 files changed, 807 insertions(+), 19 deletions(-)
+
+    ---
+    This is an automatically generated deployment message from BriefMail.
+
 ## Requirements
 
 * Ruby 1.9.2+
