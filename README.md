@@ -21,9 +21,13 @@ miserably on other platforms.
 
 ## Installation
 
-Add this line to your application's Gemfile:
+Add this line to your application's Gemfile. Anywhere will be fine, but it is
+best to put in a non-standard group to prevent it from being loaded into memory
+automatically by Rails:
 
-    gem 'mail_car'
+    group :deployment do
+      gem 'mail_car'
+    end
 
 And then execute:
 
@@ -33,18 +37,24 @@ Or install it yourself as:
 
     $ gem install mail_car
 
-### Source Control Management
-
-The scm should be automatically picked up via the deployment tool config, so no
-extra configuration necessary.
-
 ### With Capistrano deployment tool
 
 In config/deploy.rb:
 
-    require 'mail_car'
+    require 'mail_car/capistrano'
 
     set :mail_car_config, {
+      # MailCar config options.
+    }
+
+If using multistage then different config options can be used for different
+stages (obviously).
+
+## Configuration
+
+The MailCar config is a hash with the following options:
+
+    {
       mailer: {
         # Normal action_mailer config, e.g:
         address: "smtp.gmail.com",
@@ -54,31 +64,39 @@ In config/deploy.rb:
         authentication: :plain,
       },
 
+      # Or just use sendmail for sending:
+      #mailer: :sendmail,
+
       from: %(your.email@example.com),
       recipients: %w(your.email@example.com another.email@example.com),
       subject: %([DEPLOY] MyApp has been successfully deployed),
     }
 
-    after :deploy, "deploy:send_notification"
+When using sendmail, `:from` can be omitted to let sendmail handle it.
+`:subject` is not required.
 
-Or just use sendmail for sending:
+When using git, a `git_format` option can be used to control the output of the shortlogs:
 
-    set :mail_car_config, {
-      mailer_config: :sendmail,
+      # This is the default:
+      git_format: %(* %ad %s%+b)
 
-      # ...
-    }
+### Source Control Management
 
-When using sendmail, :from can be omitted to let sendmail handle it.
+The scm type should be automatically picked up via the deployment tool config,
+so no extra configuration necessary.
 
-:subject is not required. If using multistage then different config options can
-be used for different stages (obviously).
+## Usage
+
+When configured properly a mail will be sent out automatically after a
+successful deployment.
 
 To manually launch a mail (for e.g. testing):
 
     cap deploy:send_notification
 
-## Usage
+This is highly recommended, because if there is something wrong with the
+configuration (or a bug is triggered) then the entire deployment will be
+aborted and rolled back (by nature of capistrano).
 
 ## Contributing
 

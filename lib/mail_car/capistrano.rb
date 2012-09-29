@@ -1,3 +1,5 @@
+require 'mail_car'
+
 Capistrano::Configuration.instance.load do
 
   namespace :deploy do
@@ -6,5 +8,7 @@ Capistrano::Configuration.instance.load do
       MailCar::Mailer.deploy_notification(self).deliver
     end
   end
+
+  after :deploy, "deploy:send_notification"
 
 end
