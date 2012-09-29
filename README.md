@@ -1,7 +1,7 @@
 # BriefMail
 
 BriefMail is a deployment notification mailer designed for Rails 3. The
-deployment mail it sends out contains a short log and diff stat summary from
+deployment mail it sends out contains a compact log and diff stat summary from
 the source control management which also includes summaries for each git
 submodule.
 
@@ -11,7 +11,8 @@ hopefully allow for easy integration with other tools.
 
 ## Example output
 
-Just to give an idea on what the mails look like:
+Just to give an idea on what the mails look like. Both the git format used as
+well as the template it self can be easily customized.
 
     Test Application has been deployed to test @ 2012-09-29 18:57:30 +0200.
 
