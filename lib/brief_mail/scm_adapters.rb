@@ -1,7 +1,7 @@
-require 'mail_car/scm_adapters/abstract_adapter'
-require 'mail_car/scm_adapters/git'
+require 'brief_mail/scm_adapters/abstract_adapter'
+require 'brief_mail/scm_adapters/git'
 
-module MailCar
+module BriefMail
   module SCMAdapters
 
     def self.adapter_for(scm_name, config)

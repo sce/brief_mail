@@ -1,4 +1,4 @@
-module MailCar
+module BriefMail
   module SCMAdapters
     class AbstractAdapter
 

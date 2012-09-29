@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'mail_car/version'
+require 'brief_mail/version'
 
 Gem::Specification.new do |gem|
-  gem.name          = "mail_car"
-  gem.version       = MailCar::VERSION
+  gem.name          = "brief_mail"
+  gem.version       = BriefMail::VERSION
   gem.authors       = ["S. Christoffer Eliesen"]
   gem.email         = ["christoffer@eliesen.no"]
-  gem.description   = %q{MailCar sends you and your team mates a deployment summary after deploying with capistrano.}
-  gem.summary       = %q{MailCar sends you and your team mates a deployment summary after deploying with capistrano.}
-  gem.homepage      = "http://github.com/sce/mail_car"
+  gem.description   = %q{BriefMail sends you and your team mates a deployment summary after deploying with capistrano.}
+  gem.summary       = %q{BriefMail sends you and your team mates a deployment summary after deploying with capistrano.}
+  gem.homepage      = "http://github.com/sce/brief_mail"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }

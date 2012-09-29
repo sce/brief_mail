@@ -1,11 +1,11 @@
-require 'mail_car'
+require 'brief_mail'
 
 Capistrano::Configuration.instance.load do
 
   namespace :deploy do
     desc "Send email notification"
     task :send_notification do
-      MailCar::Mailer.deploy_notification(self).deliver
+      BriefMail::Mailer.deploy_notification(self).deliver
     end
   end
 

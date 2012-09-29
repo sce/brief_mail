@@ -1,4 +1,4 @@
-module MailCar
+module BriefMail
   module ConfigAdapters
     class Capistrano < AbstractAdapter
 
@@ -7,7 +7,7 @@ module MailCar
       end
 
       def from_user
-        @cap_vars.fetch(:mail_car_config)
+        @cap_vars.fetch(:brief_mail_config)
       end
 
       def scm

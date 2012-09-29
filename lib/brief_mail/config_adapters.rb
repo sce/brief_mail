@@ -1,7 +1,7 @@
-require 'mail_car/config_adapters/abstract_adapter'
-require 'mail_car/config_adapters/capistrano'
+require 'brief_mail/config_adapters/abstract_adapter'
+require 'brief_mail/config_adapters/capistrano'
 
-module MailCar
+module BriefMail
   module ConfigAdapters
 
     def self.adapter_for(config)

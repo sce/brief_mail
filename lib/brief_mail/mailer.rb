@@ -1,6 +1,6 @@
 require "action_mailer"
 
-module MailCar
+module BriefMail
 
   # Note mail is sent from the machine doing the deployment, not from the remote host.
   class Mailer < ActionMailer::Base
@@ -31,7 +31,7 @@ module MailCar
 
       mail( to: recipients, subject: subj ) do |format|
         format.text do
-          render "mail_car/views/deploy_notification.txt"
+          render "brief_mail/views/deploy_notification.txt"
         end
       end
 

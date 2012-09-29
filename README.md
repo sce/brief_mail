@@ -1,6 +1,6 @@
-# MailCar
+# BriefMail
 
-MailCar is a deployment notification mailer designed for Rails 3. The
+BriefMail is a deployment notification mailer designed for Rails 3. The
 deployment mail it sends out contains a short log and diff stat summary from
 the source control management which also includes summaries for each git
 submodule.
@@ -26,7 +26,7 @@ best to put in a non-standard group to prevent it from being loaded into memory
 automatically by Rails:
 
     group :deployment do
-      gem 'mail_car'
+      gem 'brief_mail'
     end
 
 And then execute:
@@ -35,16 +35,16 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install mail_car
+    $ gem install brief_mail
 
 ### With Capistrano deployment tool
 
 In config/deploy.rb:
 
-    require 'mail_car/capistrano'
+    require 'brief_mail/capistrano'
 
-    set :mail_car_config, {
-      # MailCar config options.
+    set :brief_mail_config, {
+      # BriefMail config options.
     }
 
 If using multistage then different config options can be used for different
@@ -52,7 +52,7 @@ stages (obviously).
 
 ## Configuration
 
-The MailCar config is a hash with the following options:
+The BriefMail config is a hash with the following options:
 
     {
       mailer: {
@@ -111,10 +111,10 @@ then the ActionMailer file delivery option can be used:
           location: File.dirname(__FILE__),
         },
 
-      recipients: %(mail_car.output),
+      recipients: %(brief_mail.output),
     }
 
-This will write the mail to `mail_car.output` in the same directory as the
+This will write the mail to `brief_mail.output` in the same directory as the
 config file instead of sending it as a mail.
 
 ### Capistrano
