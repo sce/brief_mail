@@ -11,6 +11,10 @@ module MailCar
         @config = config
       end
 
+      def format
+        @config[:git_format] || GIT_FORMAT
+      end
+
       # Returns array with name of submodule directories.
       def submodule_dirs
         # Implementation is a little hacky; we run a git command and parse the
@@ -54,7 +58,7 @@ module MailCar
 
       def shortlog
         cmd = %(git log %s.. --pretty='%s' --date=short --reverse --color=never) %
-          [@config.previous_revision, GIT_FORMAT]
+          [@config.previous_revision, format]
 
         %x(#{cmd})
       end
@@ -62,7 +66,7 @@ module MailCar
       def subdirs_shortlog
         submodule_command do |prev_sha, cur_sha|
           cmd = %(git log %s..%s --pretty='%s' --date=short --reverse --color=never) %
-            [prev_sha, cur_sha, GIT_FORMAT]
+            [prev_sha, cur_sha, format]
 
           %x(#{cmd})
         end
