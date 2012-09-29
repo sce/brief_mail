@@ -86,8 +86,18 @@ ActionMailer config options.
 When using git, a `git_format` option can be used to control the output of the
 logs:
 
-      # This is the default:
-      git_format: %(* %ad %s%+b)
+    # This is the default:
+    git_format: %(* %ad %s%+b)
+
+A different/custom template can be used by specifying in the config:
+
+    template: 'app/views/some_template.txt' # trailing .erb is not needed.
+
+Some variables with useful data and methods are available in the template,
+please read the source for the API:
+
+* `@config`: [`lib/brief_mail/config_adapters/abstract_adapter.rb`](https://github.com/sce/brief_mail/blob/master/lib/brief_mail/config_adapters/abstract_adapter.rb)
+* `@scm`: [`lib/brief_mail/scm_adapters/abstract_adapter.rb`](https://github.com/sce/brief_mail/blob/master/lib/brief_mail/scm_adapters/abstract_adapter.rb)
 
 ### Source Control Management
 

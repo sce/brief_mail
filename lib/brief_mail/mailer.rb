@@ -29,10 +29,10 @@ module BriefMail
       recipients = @config.recipients or raise %(One or more recipients are required.)
       subj = @config.subject || %([DEPLOY] %s deployed to %s) % [@config.application, @config.stage]
 
+      template = @config.from_user[:template] || "brief_mail/views/deploy_notification.txt"
+
       mail( to: recipients, subject: subj ) do |format|
-        format.text do
-          render "brief_mail/views/deploy_notification.txt"
-        end
+        format.text { render template }
       end
 
       puts %(Sent mail to %s.) % [recipients].join(", ")
