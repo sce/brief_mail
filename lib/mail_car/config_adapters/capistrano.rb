@@ -6,20 +6,12 @@ module MailCar
         @cap_vars = cap_vars
       end
 
+      def from_user
+        @cap_vars.fetch(:mail_car_config)
+      end
+
       def scm
         @cap_vars.scm
-      end
-
-      def subject
-        @cap_vars.fetch(:mail_car_config, {})[:subject]
-      end
-
-      def mailer
-        @cap_vars.fetch(:mail_car_config, {})[:mailer]
-      end
-
-      def recipients
-        @cap_vars.fetch(:mail_car_config, {})[:recipients]
       end
 
       def application

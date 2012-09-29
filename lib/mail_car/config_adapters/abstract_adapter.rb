@@ -7,10 +7,6 @@ module MailCar
       end
 
       %w(
-        subject
-        mailer
-        recipients
-
         scm
         application
         stage
@@ -20,49 +16,27 @@ module MailCar
         current_revision
       ).each do |name|
         define_method(name) do
-          raise NotImplementedError
+          #raise NotImplementedError
+          nil
         end
       end
 
-      # def subject
-      #   raise NotImplementedError
-      # end
+      # The config hash from the user.
+      def from_user
+        nil
+      end
 
-      # def mailer
-      #   raise NotImplementedError
-      # end
+      def subject
+        @subject ||= (from_user || {})[:subject]
+      end
 
-      # def recipients
-      #   raise NotImplementedError
-      # end
+      def mailer
+        @mailer ||= (from_user || {})[:mailer]
+      end
 
-      # def scm
-      #   raise NotImplementedError
-      # end
-
-      # def application
-      #   raise NotImplementedError
-      # end
-
-      # def stage
-      #   raise NotImplementedError
-      # end
-
-      # def previous_release
-      #   raise NotImplementedError
-      # end
-
-      # def current_release
-      #   raise NotImplementedError
-      # end
-
-      # def previous_revision
-      #   raise NotImplementedError
-      # end
-
-      # def current_revision
-      #   raise NotImplementedError
-      # end
+      def recipients
+        @recipients ||= (from_user || {})[:recipients]
+      end
 
     end
   end
