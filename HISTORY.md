@@ -1,5 +1,7 @@
 ## master
 
+## v0.0.2 @ 2012-09-29
+
 * Moved minitest from dependency to development dependency.
 * Added :template option.
 
