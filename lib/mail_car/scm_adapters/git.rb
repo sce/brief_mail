@@ -12,7 +12,7 @@ module MailCar
       end
 
       def format
-        @config[:git_format] || GIT_FORMAT
+        @config.from_user[:git_format] || GIT_FORMAT
       end
 
       # Returns array with name of submodule directories.
