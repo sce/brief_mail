@@ -1,6 +1,14 @@
 module BriefMail
   module SCMAdapters
     class Git < AbstractAdapter
+      Error = Class.new RuntimeError
+
+      class MissingDataError < Error
+        def initialize(args)
+          config, field = *args
+          super %(Missing "%s" from config: %s) % [field, config.inspect]
+        end
+      end
 
       # Compact git format to use for log commands:
       GIT_FORMAT = %(* %ad %s%+b).freeze
@@ -34,6 +42,9 @@ module BriefMail
       # Yield for each submodule previous_revision and current_revision for
       # that submodule, and return as { "dir-name" => "yield output" } hash.
       def submodule_command
+        fail MissingDataError, [@config, :previous_revision] unless @config.previous_revision
+        fail MissingDataError, [@config, :current_revision] unless @config.current_revision
+
         submodule_dirs.inject({}) do |h, subm|
           subm_prev = submodule_sha_at(subm, @config.previous_revision)
           subm_cur = submodule_sha_at(subm, @config.current_revision)
@@ -52,11 +63,13 @@ module BriefMail
       public
 
       def diff_stat
+        fail MissingDataError, [@config, :previous_revision] unless @config.previous_revision
         cmd = %(git diff %s.. --stat --color=never) % @config.previous_revision
         %x(#{cmd})
       end
 
       def log
+        fail MissingDataError, [@config, :previous_revision] unless @config.previous_revision
         cmd = %(git log %s.. --pretty='%s' --date=short --reverse --color=never) %
           [@config.previous_revision, format]
 
