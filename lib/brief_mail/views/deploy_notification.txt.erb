@@ -12,7 +12,8 @@ Current:  <%= @config.current_release %> @ <%= @config.current_revision %>
 <%- @scm.subdirs_log.each_pair do |dir, log| -%>
 ### Directory <%= dir %>
 
-<%= raw log %>
+<%= raw log.strip %>
+
 <%- end -%>
 ## Files changed since last deploy
 
