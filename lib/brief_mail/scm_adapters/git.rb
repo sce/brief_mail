@@ -1,7 +1,9 @@
+require 'brief_mail/error'
+
 module BriefMail
   module SCMAdapters
     class Git < AbstractAdapter
-      Error = Class.new RuntimeError
+      Error = Class.new BriefMail::Error
 
       class MissingDataError < Error
         def initialize(args)
