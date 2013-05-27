@@ -7,7 +7,7 @@ Current:  <%= @config.current_release %> @ <%= @config.current_revision %>
 
 ## Commits since last deploy (most recent at bottom)
 
-<%= raw @scm.log.strip -%>
+<%= raw @scm.log.strip %>
 
 <%= raw @scm.diff_stat -%>
 
