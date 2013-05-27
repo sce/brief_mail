@@ -12,8 +12,8 @@ module BriefMail
       end
 
       def diff_stat
-        if previous_revision
-          cmd = %(git diff %s.. --stat --color=never) % previous_revision
+        if previous_revision and current_revision
+          cmd = %(git diff %s..%s --stat --color=never) % [previous_revision, current_revision]
           %x(#{cmd})
         else
           ""
@@ -21,9 +21,9 @@ module BriefMail
       end
 
       def log
-        if previous_revision
-          cmd = %(git log %s.. --pretty='%s' --date=short --reverse --color=never) %
-            [previous_revision, format]
+        if previous_revision and current_revision
+          cmd = %(git log %s..%s --pretty='%s' --date=short --reverse --color=never) %
+            [previous_revision, current_revision, format]
 
           %x(#{cmd})
         else
